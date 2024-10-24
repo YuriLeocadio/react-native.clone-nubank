@@ -2,8 +2,9 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function Loan({showBalance, isDarkMode}) {
+export default function Loan({showBalance}) {
     const currentLoan = 'R$ 1.000,00'
+    const { isDarkMode } = useTheme();
     const styles = isDarkMode ? darkStyles : lightStyles;
 
     return (

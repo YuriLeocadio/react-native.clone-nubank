@@ -2,8 +2,10 @@ import React from 'react';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
+import { useTheme } from '../context/ThemeContext';
 
-export default function ActionButtons({ onPress, isDarkMode }) {
+export default function ActionButtons({ onPress }) {
+    const { isDarkMode } = useTheme();
 
     const styles = isDarkMode ? darkStyles : lightStyles;
 
@@ -43,7 +45,7 @@ export default function ActionButtons({ onPress, isDarkMode }) {
             title: 'Investir',
             icon: <FontAwesome5 name='signal' size={24} color={isDarkMode ? '#fff' : '#000'} />
         }
-    ]
+    ];
 
     return (
         <View style={styles.container}>
@@ -73,7 +75,7 @@ export default function ActionButtons({ onPress, isDarkMode }) {
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    );
 }
 
 const darkStyles = StyleSheet.create({

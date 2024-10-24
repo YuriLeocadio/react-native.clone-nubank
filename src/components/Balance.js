@@ -2,8 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function Balance({ showBalance, balance, isDarkMode }) {
+export default function Balance({ showBalance, balance }) {
     const currentBalance = balance.toFixed(2);
+    const { isDarkMode } = useTheme();
 
     const styles = isDarkMode ? darkStyles : lightStyles;
 

@@ -6,12 +6,13 @@ import ActionButtons from '../components/ActionButtons';
 import CreditCard from '../components/CreditCard';
 import Loan from '../components/Loan';
 import { Switch } from 'react-native-gesture-handler';
-
+import { useTheme } from '../context/ThemeContext';
 
 export default function Home({ navigation }) {
   const [showBalance, setShowBalance] = useState(false);
   const [balance, setBalance] = useState(900);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleChangeBalanceVisibility = () => {
     setShowBalance(!showBalance);
@@ -19,17 +20,12 @@ export default function Home({ navigation }) {
 
   const handlePix = () => {
     navigation.navigate("Pix", { balance, setBalance, isDarkMode });
-  }
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  }
+  };
 
   const styles = isDarkMode ? darkStyles : lightStyles;
 
   return (
     <ScrollView style={styles.container}>
-
       <Header
         showBalance={showBalance}
         handleChangeBalanceVisibility={handleChangeBalanceVisibility}
@@ -39,12 +35,12 @@ export default function Home({ navigation }) {
         onValueChange={toggleTheme}
         style={styles.themeSwitch}
       />
-      <Balance showBalance={showBalance} balance={balance} isDarkMode={isDarkMode} />
-      <ActionButtons onPress={handlePix} isDarkMode={isDarkMode} />
+      <Balance showBalance={showBalance} balance={balance} />
+      <ActionButtons onPress={handlePix} />
       <View style={styles.separator} />
-      <CreditCard showBalance={showBalance} isDarkMode={isDarkMode} />
+      <CreditCard showBalance={showBalance} />
       <View style={styles.separator} />
-      <Loan showBalance={showBalance} isDarkMode={isDarkMode} />
+      <Loan showBalance={showBalance} />
     </ScrollView>
   );
 }

@@ -2,9 +2,10 @@ import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function CreditCard({ showBalance, isDarkMode }) {
+export default function CreditCard({ showBalance }) {
     const currentBalance = 'R$ 1.094,80';
     const limitCreditCard = 'R$ 730,00';
+    const { isDarkMode } = useTheme();
     const styles = isDarkMode ? darkStyles : lightStyles;
 
     return (
