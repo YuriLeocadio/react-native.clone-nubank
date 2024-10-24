@@ -1,10 +1,11 @@
 import React from 'react';
-import { Alert, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function CreditCard({ showBalance }) {
+export default function CreditCard({ showBalance, isDarkMode }) {
     const currentBalance = 'R$ 1.094,80';
     const limitCreditCard = 'R$ 730,00';
-    const arrow = '>'
+    const styles = isDarkMode ? darkStyles : lightStyles;
 
     return (
         <TouchableOpacity
@@ -13,7 +14,7 @@ export default function CreditCard({ showBalance }) {
         >
             <View style={styles.topWrapper}>
                 <Text style={styles.title}>Cartão de crédito</Text>
-                <Text style={{color: '#fff', fontSize: 20}}>{arrow}</Text>
+                <AntDesign name='right' size={16} color={isDarkMode ? '#fff' : '#000'}/>
             </View>
 
             <View style={styles.wrapperCredit}>
@@ -33,7 +34,7 @@ export default function CreditCard({ showBalance }) {
     );
 }
 
-const styles = StyleSheet.create({
+const darkStyles = StyleSheet.create({
     container: {
         padding: 24,
         flexDirection: 'column',
@@ -65,6 +66,44 @@ const styles = StyleSheet.create({
     },
     textGrayLight: {
         color: '#ddd',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+
+});
+
+const lightStyles = StyleSheet.create({
+    container: {
+        padding: 24,
+        flexDirection: 'column',
+    },
+    topWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: '800',
+        color: '#000'
+    },
+    wrapperCredit: {
+        marginTop: 18,
+    },
+    total: {
+        color: '#000',
+        fontSize: 24,
+        marginVertical: 5,
+        fontWeight: '700',
+    },
+    textWhiteLight: {
+        color: '#000',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    textGrayLight: {
+        color: 'gray',
         fontSize: 16,
         fontWeight: '600',
     },

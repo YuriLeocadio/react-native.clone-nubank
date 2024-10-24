@@ -1,9 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function Loan({showBalance}) {
+export default function Loan({showBalance, isDarkMode}) {
     const currentLoan = 'R$ 1.000,00'
-    const arrow = '>'
+    const styles = isDarkMode ? darkStyles : lightStyles;
+
     return (
         <TouchableOpacity
             style={styles.container}
@@ -11,7 +13,7 @@ export default function Loan({showBalance}) {
         >
             <View style={styles.topWrapper}>
                 <Text style={styles.title}>Empréstimo</Text>
-                <Text style={{color: '#fff', fontSize: 20}}>{arrow}</Text>
+                <AntDesign name='right' size={16} color={isDarkMode ? '#fff' : '#000'}/>
             </View>
 
             <View style={styles.wrapperCredit}>
@@ -22,7 +24,7 @@ export default function Loan({showBalance}) {
     );
 }
 
-const styles = StyleSheet.create({
+const darkStyles = StyleSheet.create({
     container: {
         padding: 24,
         flexDirection: 'column',
@@ -49,6 +51,38 @@ const styles = StyleSheet.create({
     },
     textWhiteLight: {
         color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+});
+
+const lightStyles = StyleSheet.create({
+    container: {
+        padding: 24,
+        flexDirection: 'column',
+    },
+    topWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: '800',
+        color: '#000'
+    },
+    wrapperCredit: {
+        marginTop: 18,
+    },
+    total: {
+        color: '#000',
+        fontSize: 24,
+        marginVertical: 5,
+        fontWeight: '700',
+    },
+    textWhiteLight: {
+        color: '#000',
         fontSize: 16,
         fontWeight: '600',
     },
