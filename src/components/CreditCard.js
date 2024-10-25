@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useTheme } from '../context/ThemeContext';
 
 export default function CreditCard({ showBalance }) {
     const currentBalance = 'R$ 1.094,80';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, Touchable, TouchableOpacity, View } from 'react-native';
 import Header from '../components/Header';
 import Balance from '../components/Balance';
 import ActionButtons from '../components/ActionButtons';
@@ -7,11 +7,12 @@ import CreditCard from '../components/CreditCard';
 import Loan from '../components/Loan';
 import { Switch } from 'react-native-gesture-handler';
 import { useTheme } from '../context/ThemeContext';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function Home({ navigation }) {
   const [showBalance, setShowBalance] = useState(false);
   const [balance, setBalance] = useState(900);
-  
+
   const { isDarkMode, toggleTheme } = useTheme();
 
   const handleChangeBalanceVisibility = () => {
@@ -30,11 +31,9 @@ export default function Home({ navigation }) {
         showBalance={showBalance}
         handleChangeBalanceVisibility={handleChangeBalanceVisibility}
       />
-      <Switch
-        value={isDarkMode}
-        onValueChange={toggleTheme}
-        style={styles.themeSwitch}
-      />
+      <TouchableOpacity onPress={toggleTheme} value={isDarkMode} style={styles.themeSwitch}>
+        <MaterialCommunityIcons name="theme-light-dark" size={30} color={isDarkMode ? '#fff' : '#000'} />
+      </TouchableOpacity>
       <Balance showBalance={showBalance} balance={balance} />
       <ActionButtons onPress={handlePix} />
       <View style={styles.separator} />
@@ -57,7 +56,9 @@ const darkStyles = StyleSheet.create({
     opacity: 0.5,
   },
   themeSwitch: {
-    margin: 10,
+    alignSelf: 'flex-end',
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
 });
 
@@ -73,6 +74,8 @@ const lightStyles = StyleSheet.create({
     opacity: 0.1,
   },
   themeSwitch: {
-    margin: 10,
+    alignSelf: 'flex-end',
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
 });

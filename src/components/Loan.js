@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Loan({showBalance}) {
     const currentLoan = 'R$ 1.000,00'
